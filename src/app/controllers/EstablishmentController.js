@@ -1,4 +1,3 @@
-import mongoose from 'mongoose';
 import Establishment from '../models/Establishment';
 import EstablishmentStatusEnum from '../enums/establishment/status';
 
