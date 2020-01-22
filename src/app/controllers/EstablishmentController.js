@@ -1,3 +1,4 @@
+import mongoose from 'mongoose';
 import Establishment from '../models/Establishment';
 import EstablishmentStatusEnum from '../enums/establishment/status';
 
@@ -17,6 +18,14 @@ class EstablishmentController {
     });
 
     res.json(newEstablishment);
+  }
+
+  async update(req, res) {
+    const { establishment } = req;
+
+    const establishmentUpdated = await establishment.updateOne(req.body);
+
+    return res.json(establishmentUpdated);
   }
 }
 

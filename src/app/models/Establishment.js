@@ -17,4 +17,12 @@ const establishmentSchema = new mongoose.Schema({
   status: String
 });
 
+establishmentSchema.pre('updateOne', function(next) {
+  if (this.getUpdate().googleId) {
+    throw new Error('Never update this attribute! Please!!');
+  } else {
+    next();
+  }
+});
+
 export default mongoose.model('Establishment', establishmentSchema);
