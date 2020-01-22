@@ -1,5 +1,6 @@
 import Establishment from '../models/Establishment';
 import EstablishmentStatusEnum from '../enums/establishment/status';
+import axios from 'axios';
 
 class EstablishmentController {
   async store(req, res) {
@@ -23,6 +24,8 @@ class EstablishmentController {
     const { establishment } = req;
 
     const establishmentUpdated = await establishment.updateOne(req.body);
+
+    // chamar SQS aqui para calculo de lat long
 
     return res.json(establishmentUpdated);
   }
