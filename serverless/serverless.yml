@@ -11,7 +11,7 @@
 #
 # Happy Coding!
 
-service: waiter-communication
+service: cabeleireiro-serverless
 #app: your-app-name
 #tenant: your-tenant-name
 
@@ -30,13 +30,13 @@ custom:
     port: 4001
 
   webpack:
-    webpackConfig: 'webpack.config.js'   # Name of webpack configuration file
-    includeModules: false   # Node modules configuration for packaging
-    packager: 'yarn'   # Packager that will be used to package your external modules
+    webpackConfig: 'webpack.config.js' # Name of webpack configuration file
+    includeModules: false # Node modules configuration for packaging
+    packager: 'yarn' # Packager that will be used to package your external modules
     excludeFiles: src/**/*.test.js # Provide a glob for files to ignore
 
   serverless-offline-sqs:
-    autoCreate: true                 # create queue if not exists
+    autoCreate: true # create queue if not exists
     apiVersion: '2012-11-05'
     endpoint: http://localhost:9324
     region: eu-west-1
@@ -82,24 +82,7 @@ provider:
 #    - exclude-me.js
 #    - exclude-me-dir/**
 
-functions:
-  hello:
-    handler: handler.hello
-    events:
-      - http:
-          path: /
-          method: get
-
-  email-sender:
-    handler: workers/email-sender/sender.handler
-    events:
-      - sqs: arn:aws:sqs:us-east-1:063061419719:worker-email-sender
-      - sqs:
-          queueName: worker-email-sender
-          arn:
-            Fn:GetAtt:
-              - worker-email-sender
-              - Arn
+functions: ${file(./functions.yml)}
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
@@ -145,7 +128,7 @@ functions:
 
 resources:
   Resources:
-    worker-email-sender:
+    WorkerGeolocationGetLatitudeLongitude:
       Type: AWS::SQS::Queue
       Properties:
-        QueueName: worker-email-sender
+        QueueName: WorkerGeolocationGetLatitudeLongitude

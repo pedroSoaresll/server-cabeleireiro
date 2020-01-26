@@ -1,0 +1,11 @@
+hello:
+  handler: handler.hello
+  events:
+    - http:
+        path: /
+        method: get
+
+geolocation-get-latlong:
+  handler: workers/geolocation/index.handler
+  events:
+    - sqs: arn:aws:sqs:us-east-1:063061419719:WorkerGeolocationGetLatitudeLongitude
