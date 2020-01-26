@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "lib": [
+      "es2015",
+      "esnext.asynciterable",
+      "es2016"
+    ],
+    "target": "es2015",
+    "sourceMap": true,
+    "outDir": "dist",
+    "noImplicitAny": false,
+    "strict": true
+  },
+  "compileOnSave": false,
+  "include": [
+    "**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    ".webpack"
+  ]
+}

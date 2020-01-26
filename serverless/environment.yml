@@ -1,0 +1,3 @@
+MAILGUN_API_KEY: e5cf879abb2aa467b1cf8c2e6d406f4c-4167c382-ce87f97d
+MAILGUN_API_BASEURL: https://api.mailgun.net/v3/sandboxcfea559617594ad196c4e5e7cef8aeba.mailgun.org
+MAILGUN_DOMAIN: sandboxcfea559617594ad196c4e5e7cef8aeba.mailgun.org
