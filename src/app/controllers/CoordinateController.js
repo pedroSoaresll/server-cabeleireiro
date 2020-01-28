@@ -1,6 +1,7 @@
 import Coordinate from '../models/Coordinate';
 
 const EARTH_SIZE = 3963.2;
+const MILE_MEASUREMENT = 1609.34;
 
 class CoordinateController {
   async store(req, res) {
@@ -21,7 +22,7 @@ class CoordinateController {
     const { distance = 500 } = req.query;
     const [latitude, longitude] = coordinate.split(',');
 
-    const miles = distance / 1609;
+    const miles = distance / MILE_MEASUREMENT;
 
     const establishmentsNear = await Coordinate.where('location').within({
       center: [latitude, longitude],
