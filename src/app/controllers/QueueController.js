@@ -26,7 +26,8 @@ class QueueController {
     }
 
     await redis.set(mountQueueKey(establishment._id), newQueue);
-    req.io.to(mountRoomKey(establishment._id)).emit(newQueue);
+
+    req.io.emit(mountRoomKey(establishment._id), newQueue);
 
     return res.json({
       newQueue
@@ -43,9 +44,11 @@ class QueueController {
       });
     }
 
-    const currentQueue = await redis.get(mountQueueKey(establishment._id));
+    const currentQueue =
+      (await redis.get(mountQueueKey(establishment._id))) || 0;
 
     return res.json({
+      establishment,
       currentQueue
     });
   }

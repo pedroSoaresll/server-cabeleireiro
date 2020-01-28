@@ -11,7 +11,7 @@ require('./database');
 class App {
   constructor() {
     this.app = express();
-    this.server = http.createServer(this.app);
+    this.server = http.Server(this.app);
 
     this.socket();
 
@@ -20,9 +20,7 @@ class App {
   }
 
   socket() {
-    this.io = socket(3001, {
-      path: '/ws'
-    });
+    this.io = socket(8080);
 
     this.io.adapter(
       redisAdapter({
@@ -30,18 +28,10 @@ class App {
         port: 6379
       })
     );
-
-    this.io.on('connection', function(connection) {
-      console.log('connection');
-      connection.emit('news', { hello: 'world' });
-      connection.on('my other event', function(data) {
-        console.log(data);
-      });
-    });
   }
 
   middleware() {
-    this.app.use(this.expressStatusMonitor());
+    // this.app.use(this.expressStatusMonitor());
     this.app.use(express.json());
     this.app.use((req, _, next) => {
       req.io = this.io;
@@ -52,8 +42,6 @@ class App {
   expressStatusMonitor() {
     return statusMonitor({
       websocket: this.io,
-      port: 3001,
-      socketPath: '/ws',
       chartVisibility: {
         cpu: true,
         mem: true,
