@@ -8,6 +8,8 @@ import establishmentCreateCommand from './app/commands/establishments/create';
 import CoordinateController from './app/controllers/CoordinateController';
 import coordinateCreateCommand from './app/commands/coordinates/create';
 
+import QueueController from './app/controllers/QueueController';
+
 const routes = new Router();
 
 routes.post(
@@ -29,5 +31,13 @@ routes.post(
   coordinateCreateCommand,
   CoordinateController.store
 );
+
+routes.post(
+  '/establishments/:id/queue',
+  authMiddleware,
+  QueueController.update
+);
+
+routes.get('/establishments/:id/queue', QueueController.index);
 
 export default routes;
