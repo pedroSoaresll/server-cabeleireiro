@@ -1,13 +1,18 @@
 import mongoose from 'mongoose';
 
-const addressSchema = new mongoose.Schema({
-  address_postalcode: String,
-  address_number: Number,
-  address_name: String,
-  address_city: String,
-  address_neighborhood: String,
-  address_state: String
-});
+const addressSchema = new mongoose.Schema(
+  {
+    address_postalcode: String,
+    address_number: Number,
+    address_name: String,
+    address_city: String,
+    address_neighborhood: String,
+    address_state: String
+  },
+  {
+    timestamps: true
+  }
+);
 
 const establishmentSchema = new mongoose.Schema({
   id: mongoose.Types.ObjectId,
