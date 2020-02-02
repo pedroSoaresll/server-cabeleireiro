@@ -13,7 +13,10 @@ class EstablishmentController {
     });
 
     if (establishment) {
-      return res.json(establishment);
+      return res.json({
+        payload: establishment,
+        existent: true
+      });
     }
 
     const newEstablishment = await Establishment.create({
@@ -21,7 +24,10 @@ class EstablishmentController {
       status: EstablishmentStatusEnum.ACTIVE
     });
 
-    return res.json(newEstablishment);
+    return res.json({
+      payload: newEstablishment,
+      existent: false
+    });
   }
 
   async update(req, res) {
