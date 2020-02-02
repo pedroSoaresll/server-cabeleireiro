@@ -6,20 +6,22 @@ const { SQS } = AWS();
 
 class EstablishmentController {
   async store(req, res) {
+    const { googleId } = req.body;
+
+    const establishment = await Establishment.findOne({
+      googleId
+    });
+
+    if (establishment) {
+      return res.json(establishment);
+    }
+
     const newEstablishment = await Establishment.create({
       ...req.body,
       status: EstablishmentStatusEnum.ACTIVE
-      // address: {
-      //   address_postalcode: 'endereco',
-      //   address_number: 300,
-      //   address_name: 'endereco',
-      //   address_city: 'endereco',
-      //   address_neighborhood: 'endereco',
-      //   address_state: 'endereco'
-      // },
     });
 
-    res.json(newEstablishment);
+    return res.json(newEstablishment);
   }
 
   async update(req, res) {
