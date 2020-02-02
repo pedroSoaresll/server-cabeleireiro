@@ -13,3 +13,9 @@ sudo docker run --network host mongo
 ```sh
 sudo docker run --name sqs -p 9324:9324 -p 9325:9325 roribio16/alpine-sqs
 ```
+
+# Command to start all containers
+
+```sh
+sudo docker container start redis sqs sad_zhukovsky
+```
