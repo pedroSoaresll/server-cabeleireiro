@@ -6,7 +6,9 @@
   "private": true,
   "scripts": {
     "dev": "DEBUG=socket.io* NODE_ENV=local nodemon ./src/server.js",
-    "test": "jest"
+    "test": "jest",
+    "build": "sucrase ./src -d ./dist --transforms imports",
+    "start": "node dist/serve.js"
   },
   "dependencies": {
     "aws-sdk": "^2.610.0",
