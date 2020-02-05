@@ -48,7 +48,8 @@ class EstablishmentController {
     const MessageBody = JSON.stringify({
       establishmentId: establishment._id,
       addressPostalCode,
-      addressNumber
+      addressNumber,
+      webhookTargetResponse: `${process.env.APP_HOST}/coordinates`
     });
 
     sqs.sendMessage(
