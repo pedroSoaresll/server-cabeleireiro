@@ -3,7 +3,7 @@
 > Linux working
 
 ```sh
-sudo docker run --network host mongo
+sudo docker run -d --name mongo --network host mongo
 ```
 
 # COmmand to create a sqs container
@@ -11,7 +11,7 @@ sudo docker run --network host mongo
 > Linux working
 
 ```sh
-sudo docker run --name sqs -p 9324:9324 -p 9325:9325 roribio16/alpine-sqs
+sudo docker run -d --name sqs -p 9324:9324 -p 9325:9325 roribio16/alpine-sqs
 ```
 
 # Command to start all containers
