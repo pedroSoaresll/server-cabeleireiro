@@ -12,6 +12,8 @@ import QueueController from './app/controllers/QueueController';
 
 const routes = new Router();
 
+routes.get('/', (_, res) => res.send('ok'));
+
 routes.post(
   '/establishments',
   establishmentCreateCommand,
