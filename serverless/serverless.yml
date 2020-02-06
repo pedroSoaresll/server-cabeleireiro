@@ -81,6 +81,8 @@ provider:
 #  exclude:
 #    - exclude-me.js
 #    - exclude-me-dir/**
+package:
+  excludeDevDependencies: false
 
 functions: ${file(./functions.yml)}
 

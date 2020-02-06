@@ -1,15 +1,18 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
-const nodeExternals = require('webpack-node-externals');
+// const nodeExternals = require('webpack-node-externals');
 const slsw = require('serverless-webpack');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
-const isLocal = slsw.lib.webpack.isLocal;
+const { isLocal } = slsw.lib.webpack;
 
 module.exports = {
   mode: isLocal ? 'development' : 'production',
   entry: slsw.lib.entries,
-  externals: [nodeExternals()],
+  // externals: [
+  //   nodeExternals({
+  //     whitelist: ['axios']
+  //   })
+  // ],
   devtool: 'source-map',
   resolve: {
     extensions: ['.js', '.jsx', '.json', '.ts', '.tsx']
@@ -33,7 +36,7 @@ module.exports = {
               cacheDirectory: path.resolve('.webpackCache')
             }
           },
-          'ts-loader',
+          'ts-loader'
         ]
       }
     ]
