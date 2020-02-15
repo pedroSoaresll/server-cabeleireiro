@@ -8,7 +8,7 @@
     "dev": "DEBUG=socket.io* NODE_ENV=local nodemon ./src/server.js",
     "test": "jest",
     "build": "sucrase ./src -d ./dist --transforms imports",
-    "start": "DEBUG=socket.io* node dist/server.js"
+    "start": "node dist/server.js"
   },
   "dependencies": {
     "aws-sdk": "^2.610.0",
