@@ -34,8 +34,9 @@ class EstablishmentController {
     const { establishment } = req;
     const {
       address: {
-        address_postalcode: addressPostalCode,
-        address_number: addressNumber
+        address_name: addressName,
+        address_number: addressNumber,
+        address_neighborhood: addressNeighborhood
       }
     } = req.body;
 
@@ -47,8 +48,9 @@ class EstablishmentController {
     const QueueUrl = `${process.env.AWS_SQS_ENDPOINT}/WorkerGeolocationGetLatitudeLongitude`;
     const MessageBody = JSON.stringify({
       establishmentId: establishment._id,
-      addressPostalCode,
+      addressName,
       addressNumber,
+      addressNeighborhood,
       webhookTargetResponse: `${process.env.APP_HOST}/coordinates`
     });
 

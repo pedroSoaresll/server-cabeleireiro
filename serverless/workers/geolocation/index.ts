@@ -1,18 +1,27 @@
 import axios from 'axios';
-import { getAddressFromGoogle } from '../geolocation/services/google-geolocation';
+import { getAddressFromGoogle } from '../../services/google-geolocation';
+
+interface Params {
+  establishmentId: string;
+  addressName: string;
+  addressNeighborhood: string;
+  addressNumber: number;
+  webhookTargetResponse: string;
+}
 
 export const handler = async event => {
   return new Promise(resolve => {
     event.Records.forEach(async ({ body }) => {
       const {
         establishmentId,
-        addressPostalCode,
+        addressName,
+        addressNeighborhood,
         addressNumber,
         webhookTargetResponse
-      } = JSON.parse(body);
+      }: Params = JSON.parse(body);
 
       const { data } = await getAddressFromGoogle(
-        [addressPostalCode, addressNumber].join(',')
+        [addressName, addressNumber, addressNeighborhood].join(', ')
       );
 
       const {
